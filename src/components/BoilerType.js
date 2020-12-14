@@ -4,13 +4,16 @@ import BoilerTypeItem from "./BoilerTypeItem";
 
 
 
+
+
 class BoilerType extends Component {
   render() {
     return (
       <div>
         {
             this.props.boilerType.map((boilerType) => (
-                <BoilerTypeItem key={boilerType.id} boilerType={boilerType}/>
+                <BoilerTypeItem key={boilerType.id} boilerType={boilerType}
+                deleteBoilerType={this.props.deleteBoilerType}/>
                 )
             )
         }

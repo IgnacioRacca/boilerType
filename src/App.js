@@ -31,6 +31,10 @@ class App extends Component {
       this.setState({ boilerType: [...this.state.boilerType, newBoilerType] });
     };
 
+    deleteBoilerType = (id) => {
+      this.setState({ boilerType: [...this.state.boilerType.filter(boilerType => boilerType.id!==id)]})
+    };
+
 
   render() {
     return (
@@ -46,14 +50,14 @@ class App extends Component {
                   <AddBoilerType addBoilerType={this.addBoilerType} />
                   <BoilerType 
                     boilerType={this.state.boilerType} 
+                    deleteBoilerType={this.deleteBoilerType}
                   />
                 </React.Fragment>
               )}
             />
           </div>
         </div>
-      </Router>
-      
+      </Router> 
     );
   }
 }

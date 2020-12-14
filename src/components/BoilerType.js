@@ -8,10 +8,9 @@ class BoilerType extends Component {
   render() {
     return (
       <div>
-        <h1>Boiler Types</h1>
         {
             this.props.boilerType.map((boilerType) => (
-            <BoilerTypeItem key={boilerType.id} boilerType={BoilerTypeItem}/>
+                <BoilerTypeItem key={boilerType.id} boilerType={boilerType}/>
                 )
             )
         }

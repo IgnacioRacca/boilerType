@@ -11,11 +11,15 @@ class BoilerType extends Component {
     return (
       <div>
         {
-            this.props.boilerType.map((boilerType) => (
-                <BoilerTypeItem key={boilerType.id} boilerType={boilerType}
-                deleteBoilerType={this.props.deleteBoilerType}/>
-                )
-            )
+          this.props.boilerType.map((boilerType) => (
+              <BoilerTypeItem 
+                key={boilerType.id} 
+                boilerType={boilerType}
+                deleteBoilerType={this.props.deleteBoilerType}
+                editBoilerType={this.props.editBoilerType}
+              />
+              )
+          )
         }
       </div>
     )
@@ -24,7 +28,9 @@ class BoilerType extends Component {
 
 //PropTypes
 BoilerType.propTypes = {
-    boilerType: PropTypes.array.isRequired
+    boilerType: PropTypes.array.isRequired,
+    deleteBoilerType: PropTypes.func.isRequired,
+    editBoilerType: PropTypes.func.isRequired,
 }
 
 

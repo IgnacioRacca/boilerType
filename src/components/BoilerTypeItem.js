@@ -22,7 +22,7 @@ class BoilerTypeItem extends Component {
                 Id: {id}  ||  Skills Id: {skillsId}  ||  Type: {type}  ||  Stock: {stock}  || Description: {description}
                 <button onClick={() => this.props.deleteBoilerType(id)} 
                 style={btnDelete}>x</button>
-                <button style={btnEdit}>Edit</button>
+                <button onClick={this.props.editBoilerType.bind(this, this.props.boilerType)} style={btnEdit} >Edit</button>
                 
                 
             </p>
@@ -36,6 +36,7 @@ class BoilerTypeItem extends Component {
 BoilerTypeItem.propTypes = {
     boilerType: PropTypes.object.isRequired,
     deleteBoilerType: PropTypes.func.isRequired,
+    editBoilerType: PropTypes.func.isRequired,
 };
 
 

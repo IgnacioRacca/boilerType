@@ -10,7 +10,8 @@ import './App.css';
 
 class App extends Component {
   state = {
-    boilerType: []
+    boilerType: [],
+    boilerTypeEdit: null,
   }
 
   componentDidMount() {
@@ -18,22 +19,45 @@ class App extends Component {
     this.setState({ boilerType: data });
   }
 
-    // Add boilerType
-    addBoilerType = (id, skillsId, type, stock, description) => {
-      const newBoilerType = {
-        id: uuidv4(),
-        skillsId,
-        type,
-        stock,
-        description
-      };
-
-      this.setState({ boilerType: [...this.state.boilerType, newBoilerType] });
+  // Add boilerType
+  addBoilerType = (id, skillsId, type, stock, description) => {
+    const newBoilerType = {
+      id: uuidv4(),
+      skillsId,
+      type,
+      stock,
+      description
     };
 
-    deleteBoilerType = (id) => {
-      this.setState({ boilerType: [...this.state.boilerType.filter(boilerType => boilerType.id!==id)]})
-    };
+    this.setState({ boilerType: [...this.state.boilerType, newBoilerType] });
+  };
+
+  deleteBoilerType = (id) => {
+    this.setState({ boilerType: [...this.state.boilerType.filter(boilerType => boilerType.id!==id)]})
+  };
+
+  //edit boiler type
+  editBoilerType = (bt) => {
+    this.setState({
+      boilerTypeEdit: bt,
+    });
+    window.scrollTo(0, 0);
+  };
+
+  //update boiler type
+  updateBoilerType = (id, skillsId, type, stock, description) => {
+    this.setState({
+      boilerType: this.state.boilerType.map((boilerType) => {
+        if (boilerType.id === id) {
+          boilerType.skillsId = skillsId;
+          boilerType.type = type;
+          boilerType.stock = stock;
+          boilerType.description = description;
+        }
+        return boilerType;
+      }),
+    });
+  };
 
 
   render() {
@@ -47,10 +71,15 @@ class App extends Component {
               path="/"
               render={props => (
                 <React.Fragment>
-                  <AddBoilerType addBoilerType={this.addBoilerType} />
+                  <AddBoilerType 
+                    addBoilerType={this.addBoilerType}
+                    updateBoilerType={this.updateBoilerType}
+                    boilerTypeEdit={this.state.boilerTypeEdit}
+                  />
                   <BoilerType 
                     boilerType={this.state.boilerType} 
                     deleteBoilerType={this.deleteBoilerType}
+                    editBoilerType={this.editBoilerType}
                   />
                 </React.Fragment>
               )}

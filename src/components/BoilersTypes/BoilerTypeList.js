@@ -6,7 +6,6 @@ class BoilerTypeList extends Component {
   render() {
     return (
       <div>
-        {/* <h1>Boilers Types</h1> */}
         {
           this.props.boilerTypeValue.map((boilerType) => (
             <BoilerTypeItem 

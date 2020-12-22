@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router} from 'react-router-dom';
 import BoilerTypeList from "./BoilerTypeList";
 import AddBoilerType from "./AddBoilerType";
 import { v4 as uuidv4 } from "uuid";

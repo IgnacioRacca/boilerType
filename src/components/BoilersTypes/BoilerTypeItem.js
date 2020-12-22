@@ -7,7 +7,7 @@ class BoilerTypeItem extends Component {
   getStyle = () => {
       return {
           background: "#f4f4f4",
-          paddign: "10px 20px",
+          paddign: "10px",
           borderBottom: "1px #ccc dotted",
       };
   };
@@ -19,12 +19,11 @@ class BoilerTypeItem extends Component {
         return (
         <div style={this.getStyle()}>
             <p>
-                Id: {id}  ||  Skills Id: {skillsId}  ||  Type: {type}  ||  Stock: {stock}  || Description: {description}
+               <span>Id: {id}  ||  Skills Id: {skillsId}  ||  Type: {type}  ||  Stock: {stock}  || Description: {description}</span> 
+            
                 <button onClick={() => this.props.deleteBoilerType(id)} 
                 style={btnDelete}>x</button>
                 <button onClick={this.props.editBoilerType.bind(this, this.props.boilerType)} style={btnEdit} >Edit</button>
-                
-                
             </p>
         </div>
         )
@@ -45,7 +44,8 @@ const btnDelete ={
     color: '#fff',
     border:'none',
     padding: '5px 10px',
-    //borderRadius: '50%',
+    borderRadius: '5px',
+    marginRight:'10px',
     cursor: 'pointer',
     float: 'right'
   }
@@ -55,7 +55,8 @@ const btnEdit ={
     color: '#fff',
     border:'none',
     padding: '5px 10px',
-    //borderRadius: '50%',
+    marginRight:'5px',
+    borderRadius: '5px',
     cursor: 'pointer',
     float: 'right'
   }

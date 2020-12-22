@@ -1,94 +1,36 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import BoilerType from './components/BoilerType';
-import AddBoilerType from './components/AddBoilerType';
-import Header from './components/layout/Header'
-import { v4 as uuidv4 } from 'uuid';
+import React from "react";
+import styles from "./App.module.css";
+import Navbar from "./layout/navbar/navbar";
+import Header from "./layout/header/header";
+import Appointment from "./components/appointment";
+import Boilers from "./components/boilers";
+import BoilersTypes from "./components/BoilersTypes/BoilersTypes";
+import Buildings from "./components/buildings";
+import Custumers from "./components/custumers";
+import Technicians from "./components/technicians";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-
-import './App.css';
-
-class App extends Component {
-  state = {
-    boilerType: [],
-    boilerTypeEdit: null,
-  }
-
-  componentDidMount() {
-    const data = require('./data/boilerType.json');
-    this.setState({ boilerType: data });
-  }
-
-  // Add boilerType
-  addBoilerType = (id, skillsId, type, stock, description) => {
-    const newBoilerType = {
-      id: uuidv4(),
-      skillsId,
-      type,
-      stock,
-      description
-    };
-
-    this.setState({ boilerType: [...this.state.boilerType, newBoilerType] });
-  };
-
-  deleteBoilerType = (id) => {
-    this.setState({ boilerType: [...this.state.boilerType.filter(boilerType => boilerType.id!==id)]})
-  };
-
-  //edit boiler type
-  editBoilerType = (bt) => {
-    this.setState({
-      boilerTypeEdit: bt,
-    });
-    window.scrollTo(0, 0);
-  };
-
-  //update boiler type
-  updateBoilerType = (id, skillsId, type, stock, description) => {
-    this.setState({
-      boilerType: this.state.boilerType.map((boilerType) => {
-        if (boilerType.id === id) {
-          boilerType.skillsId = skillsId;
-          boilerType.type = type;
-          boilerType.stock = stock;
-          boilerType.description = description;
-        }
-        return boilerType;
-      }),
-    });
-  };
-
-
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <div className="container">
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <div className={styles.wrapper}>
+          <Navbar />
+          <div className={styles.mainContent}>
             <Header />
-            <Route
-              exact
-              path="/"
-              render={props => (
-                <React.Fragment>
-                  <AddBoilerType 
-                    addBoilerType={this.addBoilerType}
-                    updateBoilerType={this.updateBoilerType}
-                    boilerTypeEdit={this.state.boilerTypeEdit}
-                  />
-                  <BoilerType 
-                    boilerType={this.state.boilerType} 
-                    deleteBoilerType={this.deleteBoilerType}
-                    editBoilerType={this.editBoilerType}
-                  />
-                </React.Fragment>
-              )}
-            />
+            <Switch>
+              <Route path="appoinment" component={Appointment} />
+              <Route path="boilers" component={Boilers} />
+              <Route path="/BoilersTypes" component={BoilersTypes} />
+              <Route path="buildings" component={Buildings} />
+              <Route path="custumers" component={Custumers} />
+              <Route path="technicians" component={Technicians} />
+            </Switch>
           </div>
         </div>
-      </Router> 
-    );
-  }
+      </div>
+    </Router>
+  );
 }
 
 export default App;

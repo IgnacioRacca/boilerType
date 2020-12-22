@@ -56,8 +56,6 @@ class AddBoilerType extends Component {
   
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-    
-  
     render() {
       return (
         <div>
@@ -95,13 +93,20 @@ class AddBoilerType extends Component {
               value={this.state.description}
               onChange={this.onChange}
             />
-  
+            {this.state.id ?
             <input
               type="submit"
-              value="Submit"
+              value="Save"
               className="btn"
               style={inputStyle}
             />
+            :
+            <input
+              type="submit"
+              value="Add"
+              className="btn"
+              style={inputStyle}
+            />}
           </form>
         </div>
       );
@@ -117,7 +122,7 @@ class AddBoilerType extends Component {
   
   const inputStyle = {
     padding: "10px",
-    width: "50%",
+    width: "20%",
     margin: "5px",
     borderRadius: "5px",
   };
